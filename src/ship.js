@@ -1,21 +1,21 @@
 import $ from 'jquery';
 
 class Ship {
-  constructor() {
-    // this.hp = size;
+  constructor(size) {
+    this.hp = size;
   }
 
   hor_highlight(board) {
     let val;
     $('*').mouseover((e) => {
       let tar = e.target.value
-      if (tar && tar + 2 < this.check_bounds(tar) && this.hor_is_valid(board, tar)) {
+      if (tar && tar + (this.hp - 2) < this.check_bounds(tar) && this.hor_is_valid(board, tar)) {
         val = tar;
-        for (let i = val; i < val + 4; i++) {
+        for (let i = val; i < val + this.hp; i++) {
           $(`#${board}${i}`).addClass('highlight')
         }
         $(`#${board}${val}`).mouseout(() => {
-          for (let i = val; i < val + 4; i++) {
+          for (let i = val; i < val + this.hp; i++) {
             $(`#${board}${i}`).removeClass('highlight')
           }
         })
@@ -28,13 +28,13 @@ class Ship {
     let num = board === 'a' ? 1 : 2;
     $('*').mouseover((e) => {
       let tar = e.target.value
-      if (tar && tar + 30 < num * 100 + 1 && this.vert_is_valid(board, tar)) {
+      if (tar && tar + (this.hp * 10 - 10) < num * 100 + 1 && this.vert_is_valid(board, tar)) {
         val = tar;
-        for (let i = val; i < val + 40; i += 10) {
+        for (let i = val; i < val + (this.hp * 10); i += 10) {
           $(`#${board}${i}`).addClass('highlight')
         }
         $(`#${board}${val}`).mouseout(() => {
-          for (let i = val; i < val + 40; i += 10) {
+          for (let i = val; i < val + (this.hp * 10); i += 10) {
             $(`#${board}${i}`).removeClass('highlight')
           }
         })
@@ -50,10 +50,10 @@ class Ship {
     let val;
     $('*').mouseover((e) => {
       let tar = e.target.value
-      if (tar && tar + 2 < this.check_bounds(tar) && this.hor_is_valid(board, tar)) {
+      if (tar && tar + (this.hp - 2) < this.check_bounds(tar) && this.hor_is_valid(board, tar)) {
         val = tar;
         $(`#${board}${val}`).click(() => {
-          for (let i = val; i < val + 4; i++) {
+          for (let i = val; i < val + this.hp; i++) {
             $(`#${board}${i}`).addClass('place')
           }
         })
@@ -66,10 +66,10 @@ class Ship {
     let num = board === 'a' ? 1 : 2;
     $('*').mouseover((e) => {
       let tar = e.target.value
-      if (tar && tar + 30 < num * 100 + 1 && this.vert_is_valid(board, tar)) {
+      if (tar && tar + (this.hp * 10 - 10) < num * 100 + 1 && this.vert_is_valid(board, tar)) {
         val = tar;
         $(`#${board}${val}`).click(() => {
-          for (let i = val; i < val + 40; i += 10) {
+          for (let i = val; i < val + (this.hp * 10); i += 10) {
             $(`#${board}${i}`).addClass('place')
           }
         })
@@ -87,7 +87,7 @@ class Ship {
   }
 
   vert_is_valid(board, val) {
-    for (let i = val; i < val + 40; i += 10) {
+    for (let i = val; i < val + (this.hp * 10); i += 10) {
       if ($(`#${board}${i}`).hasClass('place')) {
         return false
       }
