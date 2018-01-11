@@ -1,0 +1,16 @@
+body, h1, h2, h3, p, div, nav, ul, li {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+}
+
+.boards {
+  display: flex;
+  justify-content: space-around;
+}
+
+table {
+  text-align: center;
+}
