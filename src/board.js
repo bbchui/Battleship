@@ -1,11 +1,14 @@
+import Ship from './ship.js'
+
 class Board {
   constructor() {
-
+    // this.ship = new Ship(this);
+    // this.ship.hor_highlight;
   }
 
-  create(table) {
+  create(table, onetwo) {
     let tbl = document.getElementById(table);
-    let id = 0;
+    let id = onetwo === 'a' ? 0 : 100;
     let asi = 65;
     let num = 1;
 
@@ -22,7 +25,8 @@ class Board {
           cell.innerHTML = String.fromCharCode(asi);
           asi++;
         } else {
-          cell.id = id++;
+          cell.value = id;
+          cell.id = `${onetwo}${id++}`;
           // cell.innerHTML = cell.id
         }
 
