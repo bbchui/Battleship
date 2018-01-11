@@ -21,6 +21,7 @@ class Battleship {
     this.ship.hor_highlight('a');
     this.ship.vert_highlight('b');
     this.ship.hor_placeship('a');
+    this.ship.vert_placeship('b')
   }
 }
 
